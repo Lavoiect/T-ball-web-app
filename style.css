@@ -123,3 +123,32 @@ p{
   color: #fff;
   padding: 0 15px;
 }
+
+.tab-panels ul{
+  margin: 0;
+  padding: 0;
+
+}
+
+.tab-panels li{
+  list-style: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tab-panels ul li:hover{
+  color: red;
+}
+
+.tab-panels ul li.active{
+  color: green;
+}
+
+.tab-panels .panel{
+  display: none;
+  background-color: blue;
+}
+
+.tab-panels .panel.active{
+  display: block;
+}
