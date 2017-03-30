@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,7 +22,7 @@
       <a href="index.html"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 
       <div id="user">T-ball Nationals
-        <i class="fa fa-user-o" aria-hidden="true"></i>
+
       </div>
     </div><!-- End nav div-->
 
@@ -30,18 +30,20 @@
   <!-- tabs section -->
 
 <div class="tab-panels">
-    <ul class="tabs">
-        <li class="active">Players</li>
-        <li>Positions</li>
-        <li>Games</li>
+    <ul class="tabs menu">
+        <li rel="playerTab" class="active">Players</li>
+        <li rel="positionTab">Positions</li>
+        <li rel="gameTab">Games</li>
     </ul>
 
 <div id="playerTab" class="panel active">
-  Add Player
+  <ul class="tabList">
+    <li>Add Player</li>
+  </ul>
 </div>
 
 <div id="positionTab" class="panel">
-  <ul>
+  <ul class="tabList">
     <li>Pitcher</li>
     <li>Catcher</li>
     <li>1st Base</li>
@@ -56,21 +58,18 @@
 </div>
 
 <div id="gameTab" class="panel">
-  Add Game
+  <ul class="tabList">
+    <li>Add Game</li>
+  </ul>
+  <button class="generate">Generate Line-up</button>
 </div>
-
-
-
-
-
-
-</div>
+</div><!-- End tabs -->
 
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/myScript.js"></script>
   </body>
 </html>
