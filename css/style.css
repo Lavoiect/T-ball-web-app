@@ -111,31 +111,41 @@ form {
   height: 25px;
   margin-bottom: 10px;
 }
+#input2 {
+  margin-top: 5px;
+  width: 100%;
+  height: 35px;
+  padding: 3px;
+  font-size: 20px;
+  background: #0F5CE9;
+  color: #fff;
+  }
 
-.submit {
-  margin-top: 10px;
-  padding: 10px;
-  width:100%;
-  height:40px
-}
+
+
 .tabList{
-  background: red;
+  background-color: rgba(192,192,192,0.3);
   list-style: none;
 
 }
 
 #positionTab ul li {
-  border: solid 3px green;
+  border-bottom: solid 3px rgba(192,192,192,0.6);
 }
 #playerTab ul li {
-  border: solid 3px green;
+  border-bottom: solid 3px rgba(192,192,192,0.3);
 }
 
 #gameTab ul li {
-  border: solid 3px green;
+  border-bottom: solid 3px rgba(192,192,192,0.3);
 }
 
-
+.tabList {
+  color: #fff;
+  border-top: solid 3px rgba(192,192,192,0.3);
+  border-left: solid 3px rgba(192,192,192,0.3);
+  border-right: solid 3px rgba(192,192,192,0.3);
+}
 
 p{
   color: #fff;
@@ -145,17 +155,19 @@ p{
   background-color: #fff;
   color: #95989A;
 }
-.tab-panels ul li:hover{
+
+/*.tab-panels ul li:hover{
   background-color: red;
-}
+}*/
+
 .tab-panels ul{
   margin: 0;
   padding: 0;
 
+
 }
 
 .tab-panels .menu li{
-  border: solid 2px;
   width: 140px;
   padding: 10px;
   font-size: 20px;
