@@ -193,3 +193,13 @@ p{
 .tab-panels .panel.active{
   display: block;
 }
+
+/* Styles added by Rob */
+.base {
+    width: 75px;
+    height: 75px;
+}
+
+.err {
+    color: red;
+}
