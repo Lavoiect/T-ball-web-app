@@ -1,4 +1,24 @@
 <?php
+     function getCoaches() {
+        $mysqli = getConnection();
+
+        if ($mysqli) {
+            $teams = "";
+            $res = $mysqli->query("SELECT id, first_name, last_name, user_name, email FROM coach where user_name <> 'Admin' order by id asc");
+
+            $num_rows = mysqli_num_rows($res);
+            
+            if ($num_rows > 0) {
+                while ($row = $res->fetch_assoc()) {
+                    $teams .= "<li value='" . $row['id'] . "'>" . $row['user_name'] . ": " . $row['first_name'] . " " . $row['last_name'] . "<a href='mailto:" . $row['email'] . "'><i class='fa fa-envelope' aria-hidden='true'></i></a></li>";
+                }
+            }
+
+            $mysqli->close();
+
+            return $teams;
+        } // else we could not connect to the DB            
+    }
     function addCoach($coach_email) {
         $mysqli = getConnection();
 

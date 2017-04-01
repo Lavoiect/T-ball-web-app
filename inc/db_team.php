@@ -10,7 +10,7 @@
             
             if ($num_rows > 0) {
                 while ($row = $res->fetch_assoc()) {
-                    $teams .= "<option value='" . $row['id'] . "'>" . $row['name'] ."</option>";
+                    $teams .= "<li value='" . $row['id'] . "'>" . $row['name'] ."</li>";
                 }
             }
 

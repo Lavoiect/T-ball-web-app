@@ -52,11 +52,15 @@
             </div>
             <!-- End nav div-->
         
-            <form action="login.php" method="POST">
+            <form id="loginForm" action="login.php" method="POST">
                 <label for="userName">User Name:</label>
                 <input id="userName" name="userName" type="text" value="<?php echo $user_name ?>" required="required" autofocus="autofocus" /><br />
                 <label for="password">Password:</label>
                 <input id="password" name="password" type="password" required="required" /><br />
+                
+                <label for="rememberMe">Remember Me:</label>
+                <input type="checkbox" id="rememberMe" /><br />
+                
                 <button type="submit">Login</button>
             </form>  
 
@@ -66,5 +70,6 @@
         </div>
         
         <?php include("inc/scripts.php"); ?>
+        <script src="scripts/login_scripts.js"></script>
     </body>
 </html>
