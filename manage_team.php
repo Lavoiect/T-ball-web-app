@@ -47,8 +47,10 @@
                 <div id="positionTab" class="panel">
                     <ul class="tabList">
                         <?php
-                            $position = getPositions();
-                            echo $position;
+                            $positions = json_decode(getPositions(), true);
+                            foreach ($positions as $position) {
+                                echo "<li value='" . $position['id'] . "'>" . $position['name'] ."</li>";   
+                            }
                         ?>
                         <li><i class="fa fa-plus" aria-hidden="true"></i>Add Position</li>
                     </ul>

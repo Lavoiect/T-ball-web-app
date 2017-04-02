@@ -7,9 +7,6 @@
         header("Location: login.php");
     }
 
-    //error_reporting(E_ALL);
-    //ini_set("display_errors","On");
-
     include 'inc/db.php';
     include 'inc/db_coach.php';
     include 'inc/send_email.php';

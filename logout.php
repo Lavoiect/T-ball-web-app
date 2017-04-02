@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION["auth"] = false;
-    $_SESSION["coach"] = $_POST[""];
+    session_destroy();
     header("Location: index.php");
 ?>

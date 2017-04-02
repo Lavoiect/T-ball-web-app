@@ -15,7 +15,12 @@
             <!-- Start nav div-->
             <div class="nav">
                 <a href="index.php"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <div id="user"><a href="login.php">Login <i class="fa fa-user-o" aria-hidden="true"></i></a></div>
+                <?php if($auth) : ?>
+                    <div id="user">Welcome Coach <?php echo $coach ?>. <a href="logout.php">Logout </a><i class="fa fa-user-o" aria-hidden="true"></i> </div>
+                <? else: ?>    
+                    <div id="user"><a href="login.php">Login <i class="fa fa-user-o" aria-hidden="true"></i></a></div>
+                <?php endif; ?>
+
             </div>
             <!-- End nav div-->
             

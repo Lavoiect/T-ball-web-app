@@ -1,13 +1,9 @@
 <?php
     session_start();
     $auth = $_SESSION["auth"];
-    $coach = $_SESSION["coach"];
 
     $q_id = $_GET["id"];
     $q_auth = $_GET["auth"];
-
-    //error_reporting(E_ALL);
-    //ini_set("display_errors","On");
 
     include 'inc/db.php';
     include 'inc/db_user.php';

@@ -7,9 +7,6 @@
         header("Location: login.php");
     }
 
-    error_reporting(E_ALL);
-    ini_set("display_errors","On");
-
     include 'inc/db.php';
     include 'inc/db_coach.php';
 ?>
@@ -33,8 +30,10 @@
             <div class="dataList">
                 <ul>
                     <?php
-                        $coaches = getCoaches();
-                        echo $coaches;
+                        $coaches = json_decode(getCoaches(), true);
+                        foreach ($coaches as $coach) {
+                            echo "<li value='" . $coach['id'] . "'>" . $coach['user_name'] . ": " . $coach['first_name'] . " " . $coach['last_name'] . "<a href='mailto:" . $coach['email'] . "'><i class='fa fa-envelope' aria-hidden='true'></i></a></li>";
+                        }
                     ?>
                 </ul>
             </div>

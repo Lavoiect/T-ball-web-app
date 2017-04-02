@@ -7,8 +7,8 @@
         header("Location: login.php");
     }
 
-    //error_reporting(E_ALL);
-    //ini_set("display_errors","On");
+    error_reporting(E_ALL);
+    ini_set("display_errors","On");
 
     include 'inc/db.php';
     include 'inc/db_team.php';
@@ -33,8 +33,10 @@
             <div class="dataList">
                 <ul>
                     <?php
-                        $teams = getTeams();
-                        echo $teams;
+                        $teams = json_decode(getTeams(), true);
+                        foreach ($teams as $team) {
+                            echo "<li value='" . $team['id'] . "'>" . $team['name'] ."</li>";   
+                        }
                     ?>
                 </ul>
             </div>

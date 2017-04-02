@@ -2,9 +2,6 @@
     session_start();
     $auth = $_SESSION["auth"];
 
-    //error_reporting(E_ALL);
-    //ini_set("display_errors","On");
-
     include 'inc/db.php';
     include 'inc/db_user.php';
 
