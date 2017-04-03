@@ -67,6 +67,6 @@
         </div>
         
         <?php include("inc/scripts.php"); ?>
-        <script src="scripts/login_scripts.js"></script>
+        <script src="js/login_scripts.js"></script>
     </body>
 </html>

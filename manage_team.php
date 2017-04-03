@@ -67,6 +67,6 @@
         </div>
         
         <?php include("inc/scripts.php"); ?>
-        <script src="scripts/manage_team_scripts.js"></script>
+        <script src="js/manage_team_scripts.js"></script>
     </body>
 </html>

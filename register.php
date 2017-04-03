@@ -96,6 +96,6 @@
         </div>
         
         <?php include("inc/scripts.php"); ?>
-        <script src="scripts/register_scripts.js"></script>
+        <script src="js/register_scripts.js"></script>
     </body>
 </html>
