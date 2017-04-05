@@ -28,4 +28,8 @@ $(document).ready(function(){
   $(".callInput").click(function(){
     $(".popUpWindow").show();
   });
+
+  $(".close").click(function(){
+    $(".popUpWindow").hide();
+  });
 });
