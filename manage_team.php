@@ -2,17 +2,20 @@
     session_start();
     $auth = $_SESSION["auth"];
     $coach = $_SESSION["coach"];
+    $coach_id = $_SESSION["coach_id"];
 
     if (!$auth) {
         header("Location: login.php");
     }
 
-    //error_reporting(E_ALL);
-    //ini_set("display_errors","On");
+    error_reporting(E_ALL);
+    ini_set("display_errors","On");
 
     include 'inc/db.php';
     include 'inc/db_user.php';
     include 'inc/db_team.php';
+
+    $team_name = getTeamName($coach_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +35,7 @@
 
             <!-- Start tabs section -->
             <div class="tab-panels">
+               <h2 class="teamName"><?php echo $team_name ?></h2>
                 <ul class="tabs menu">
                     <li rel="playerTab" class="active">Players</li>
                     <li rel="positionTab">Positions</li>

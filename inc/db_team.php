@@ -16,6 +16,25 @@
         } // else we could not connect to the DB            
     }
 
+    function getTeamName($coach_id) {
+        $mysqli = getConnection();
+        $team_name = "";
+
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT team.name FROM team INNER JOIN coach ON team.id = coach.team_id WHERE coach.id = " . $coach_id);
+            
+            $num_rows = mysqli_num_rows($res);
+            
+            while ($row = $res->fetch_assoc()) {
+                $team_name = $row['name'];
+            }
+
+            $mysqli->close();
+
+            return $team_name;
+        } // else we could not connect to the DB 
+    }
+
     function addTeam($team_name) {
         $mysqli = getConnection();
         $success = "success";
