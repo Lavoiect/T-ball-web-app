@@ -23,3 +23,9 @@ $(document).ready(function() {
     }
   });
 });
+
+$(document).ready(function(){
+  $(".callInput").click(function(){
+    $(".popUpWindow").show();
+  });
+});

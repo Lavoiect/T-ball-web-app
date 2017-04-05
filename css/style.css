@@ -26,7 +26,6 @@ i {
   margin: auto;
   height: 900px;
   width: 500px;
-  background-color: red;
   background-image:
     url("http://res.cloudinary.com/lavoie-media/image/upload/v1490674872/background_yy6zne.png") ;
   background-repeat: no-repeat;
@@ -74,7 +73,6 @@ i {
   margin: auto;
   height: 900px;
   width: 500px;
-  background-color: red;
   background-image:
     url("http://res.cloudinary.com/lavoie-media/image/upload/v1490674872/background_yy6zne.png") ;
   background-repeat: no-repeat;
@@ -156,9 +154,6 @@ p{
   color: #95989A;
 }
 
-/*.tab-panels ul li:hover{
-  background-color: red;
-}*/
 
 .tab-panels ul{
   margin: 0;
@@ -192,6 +187,25 @@ p{
 
 .tab-panels .panel.active{
   display: block;
+}
+
+.popUpWindow{
+  color: #fff;
+  display: none;
+  width: 465px;
+  background-color: rgba(0,0,0,0.9);
+  position: fixed;
+  top: 31%;
+  z-index: 1;
+  border: solid 3px grey;
+}
+
+.callInput {
+  cursor: pointer;
+}
+
+#playerTab.input_main{
+  color: white;
 }
 
 /* Styles added by Rob */

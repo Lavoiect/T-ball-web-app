@@ -30,7 +30,7 @@
             </div>
             <!-- End nav div-->
 
-            <!-- Start tabs section -->        
+            <!-- Start tabs section -->
             <div class="tab-panels">
                 <ul class="tabs menu">
                     <li rel="playerTab" class="active">Players</li>
@@ -40,8 +40,12 @@
 
                 <div id="playerTab" class="panel active">
                     <ul class="tabList">
-                        <li><i class="fa fa-plus" aria-hidden="true"></i>Add Player</li>
+                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" href="#">Add Player</a></li>
                     </ul>
+                    <form class="popUpWindow" action="/action_page.php">
+                    Player name: <input type="text" name="pname">
+                    <input class="close" type="submit" value="Submit">
+                    </form>
                 </div>
 
                 <div id="positionTab" class="panel">
@@ -49,23 +53,31 @@
                         <?php
                             $positions = json_decode(getPositions(), true);
                             foreach ($positions as $position) {
-                                echo "<li value='" . $position['id'] . "'>" . $position['name'] ."</li>";   
+                                echo "<li value='" . $position['id'] . "'>" . $position['name'] ."</li>";
                             }
                         ?>
-                        <li><i class="fa fa-plus" aria-hidden="true"></i>Add Position</li>
+                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput">Add Position</a></li>
                     </ul>
+                    <form class="popUpWindow" action="/action_page.php">
+                    Position: <input type="text" name="position">
+                    <input class="close" type="submit" value="Submit">
+                    </form>
                 </div>
 
                 <div id="gameTab" class="panel">
                     <ul class="tabList">
-                        <li><i class="fa fa-plus" aria-hidden="true"></i>Add Game</li>
+                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput">Add Game</a></li>
                     </ul>
+                    <form class="popUpWindow" action="/action_page.php">
+                    Add Game: <input type="text" name="game">
+                    <input class="close" type="submit" value="Submit">
+                    </form>
                     <button class="generate">Generate Line-up</button>
                 </div>
             </div>
             <!-- End tabs -->
         </div>
-        
+
         <?php include("inc/scripts.php"); ?>
         <script src="js/manage_team_scripts.js"></script>
     </body>
