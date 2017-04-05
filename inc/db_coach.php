@@ -16,7 +16,8 @@
         } // else we could not connect to the DB            
     }
 
-    function addCoach($coach_email) {
+    // ToDo: This function is HUGE, and should be refactored
+    function addCoach($team_id, $coach_email) {
         $mysqli = getConnection();
 
         if ($mysqli) {
@@ -24,7 +25,6 @@
             $last_id = "0";
             
             $res = $mysqli->query("SELECT id, registered FROM coach_wip where email = '" . $coach_email . "'");
-
             $num_rows = mysqli_num_rows($res);
             
             if ($num_rows > 0) {
@@ -35,27 +35,37 @@
                 for ($i = 0; $i < 10; $i++) {
                     $random .= chr(mt_rand(33, 126));
                 }
+                // ToDo: need to generate a better random key!
                 $random = preg_replace('/[^a-zA-Z0-9\']/', '_', $random);           
                 
-                // save in COACH_WIP
-                $query = "INSERT INTO coach_wip (email, coach_key) VALUES ('" . $coach_email. "', '" . $random . "')";                    
-                if ($mysqli->query($query) === TRUE) {
-                    $last_id = $mysqli->insert_id;
-                    //echo "New record created successfully. Last inserted ID is: " . $last_id;
+                $res = $mysqli->query("SELECT id, registered FROM coach_wip where team_id = " . $team_id);
+                $num_rows = mysqli_num_rows($res);
+                if ($num_rows > 0) {
+                    $success = "Team alrady assigned to a Coach.";
                 } else {
-                    //echo "Error: " . $query . "<br>" . $mysqli->error;
-                    $success = "System error. Unable to create Coach.";
-                }          
-                
-                // send email to coach
-                $to = $coach_email;
-                $subject = "Welcome to the line up and defensive positioning tool.";
-                $message = "Please use the link below to complete your Coach registration." . "\r\n";
-                $message .=  "http://" . $_SERVER['SERVER_NAME'] . "/register.php?id=" . $last_id  . "&auth=" . $random . "\r\n\r\n";
-                sendMail($to, $subject, $message);
-                
-                $msg = "To: " . $coach_email . "\r\nSubject: " . $subject . "\r\nMessage: " . $message . "\r\n";
-                writeToLog($msg);
+                    // save in COACH_WIP
+                    $query = "INSERT INTO coach_wip (team_id, email, coach_key) VALUES (" . $team_id . ", '" . $coach_email. "', '" . $random . "')";                    
+                    if ($mysqli->query($query) === TRUE) {
+                        $last_id = $mysqli->insert_id;
+                        //echo "New record created successfully. Last inserted ID is: " . $last_id;
+                    } else {
+                        //echo "Error: " . $query . "<br>" . $mysqli->error;
+                        $success = "System error. Unable to create Coach.";
+                    }          
+
+                    // send email to coach
+                    $to = $coach_email;
+                    $subject = "Welcome to the line up and defensive positioning tool.";
+                    $message = "Please use the link below to complete your Coach registration." . "\r\n";
+                    $message .=  "http://" . $_SERVER['SERVER_NAME'] . "/register.php?id=" . $last_id  . "&auth=" . $random . "\r\n\r\n";
+                    sendMail($to, $subject, $message);
+
+                    $msg = "To: " . $coach_email . "\r\nSubject: " . $subject . "\r\nMessage: " . $message . "\r\n";
+                    
+                    // ToDo: Comment-out the following when deployed to prod webserver, as email will be sent
+                    // This is for loacl dev / testing only!
+                    writeToLog($msg);
+                }
             }
             
             $mysqli->close();

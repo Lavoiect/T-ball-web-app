@@ -19,7 +19,6 @@
     function addTeam($team_name) {
         $mysqli = getConnection();
         $success = "success";
-        $coach_id = $_SESSION["coach_id"];
 
         if ($mysqli) {
             $res = $mysqli->query("SELECT id FROM team where name = '" . $team_name . "'");
@@ -29,7 +28,7 @@
             if ($num_rows > 0) {
                 $success = "Team name aleady exists.";
             } else {
-                $query = "INSERT INTO team (coach_id, name) VALUES (" . intval($coach_id) . ", '" . $team_name . "')";                    
+                $query = "INSERT INTO team (name) VALUES ('" . $team_name . "')";                    
                 if ($mysqli->query($query) === TRUE) {
                     // Team inserted
                 } else {

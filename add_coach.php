@@ -8,6 +8,7 @@
     }
 
     include 'inc/db.php';
+    include 'inc/db_team.php';
     include 'inc/db_coach.php';
     include 'inc/send_email.php';
     include 'inc/logger.php';
@@ -15,10 +16,11 @@
     $msg ="";
 
     if (count($_POST) > 0) {
+        $team_id = $_POST["teamName"]; 
         $email = $_POST["coachEmail"];
 
         if ($email != "") {
-            $success = addCoach($email);
+            $success = addCoach($team_id, $email);
 
             if ($success == "success") {
                 header("Location: index.php");
@@ -44,11 +46,26 @@
             </div>
             <!-- End nav div-->
         
-            <form action="add_coach.php" method="POST">
+            <form id="addCoachForm" action="add_coach.php" method="POST">
+                <label for="teamName">Team Name</label>
+                <select id="teamName" name="teamName">
+                    <option value="1">Select a Team</option>
+                    <?php
+                        $teams = json_decode(getTeams(), true);
+                        foreach ($teams as $team) {
+                            $team_name = $team['name'];
+                            if ($team_name != '')
+                            echo "<option value='" . $team['id'] . "'>" . $team_name ."</option>";   
+                        }
+                    ?>
+                </select>
+                <br />
                 <label for="coachEmail">Coach Email:</label>
                 <input id="coachEmail" name="coachEmail" type="email" value="<?php echo $_POST["coachEmail"] ?>"  required="required" autofocus="autofocus"><br />
                 <button class="submit" type="submit">Add Coach</button>
             </form>  
+            
+            <div id="msgDiv" class="err"></div>
             
             <?php if($msg != "") : ?>
                 <div class="err">Error: <?php echo $msg ?></div>
@@ -58,5 +75,6 @@
         </div>
         
         <?php include("inc/scripts.php"); ?>
+        <script src="js/add_coach_scripts.js"></script>
     </body>
 </html>

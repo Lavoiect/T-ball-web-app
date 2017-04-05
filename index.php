@@ -27,18 +27,18 @@
                 
                 <div class="addTeam">
                     <?php if($coach == "Admin") : ?>
-                        <a href="add_coach.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
-                        <div class="iconLabel">Add Coach</div>
-                        <br />
-                        <a href="show_coaches.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
-                        <div class="iconLabel">Show Coaches</div>
-                        <br />
-                        <a href="show_teams.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
-                        <div class="iconLabel">Show Teams</div>
-                    <? else: ?>    
                         <a href="add_team.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
                         <div class="iconLabel">Add Team</div>
                         <br />
+                        <a href="add_coach.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
+                        <div class="iconLabel">Add Coach</div>
+                        <br />
+                        <a href="show_teams.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
+                        <div class="iconLabel">Show Teams</div>
+                        <br />
+                        <a href="show_coaches.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
+                        <div class="iconLabel">Show Coaches</div>
+                    <? else: ?>    
                         <a href="manage_team.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
                         <div class="iconLabel">Manage Team</div>
                     <?php endif; ?>

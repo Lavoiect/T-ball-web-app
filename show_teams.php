@@ -35,7 +35,9 @@
                     <?php
                         $teams = json_decode(getTeams(), true);
                         foreach ($teams as $team) {
-                            echo "<li value='" . $team['id'] . "'>" . $team['name'] ."</li>";   
+                            $team_name = $team['name'];
+                            if ($team_name != '')
+                            echo "<li value='" . $team['id'] . "'>" . $team_name ."</li>";   
                         }
                     ?>
                 </ul>

@@ -20,7 +20,7 @@
             $success = addTeam($team_name);
 
             if ($success == "success") {
-                header("Location: manage_team.php");
+                header("Location: index.php");
             } else {
                 $msg = $success;
             }

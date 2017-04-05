@@ -23,11 +23,12 @@
                 $_SESSION["coach"] = getUserName($user_name);
                 $_SESSION["coach_id"] = getUserId($user_name);
                 
-                if ($user_name == "Admin") {
-                    header("Location: add_coach.php");
-                } else {
-                    header("Location: add_team.php");
-                }
+                //if ($user_name == "Admin") {
+                    //header("Location: add_coach.php");
+                //} else {
+                    //header("Location: add_team.php");
+                //}
+                header("Location: index.php");
             } else {
                 $valid = false;
             }
