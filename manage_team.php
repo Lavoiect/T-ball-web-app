@@ -44,11 +44,16 @@
 
                 <div id="playerTab" class="panel active">
                     <ul class="tabList">
-                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" href="#">Add Player</a></li>
+                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" id="playerTabAdd" href="#">Add Player</a></li>
                     </ul>
-                    <form class="popUpWindow" action="/action_page.php">
-                    Player name: <input type="text" name="pname">
-                    <input class="close" type="submit" value="Submit">
+                    <form class="popUpWindow" id="addPlayerForm">
+                        <label for="pFName">First name </label>
+                        <input type="text" id="pFName" name="pFName" />
+                        <br />
+                        <label for="pLName">Last name </label>
+                        <input type="text" id="pLName" name="pLName" />
+                        <input class="close" type="submit" value="Submit">
+                        <div id="playerMsgDiv" class="err"></div>
                     </form>
                 </div>
 
@@ -60,21 +65,25 @@
                                 echo "<li value='" . $position['id'] . "'>" . $position['name'] ."</li>";
                             }
                         ?>
-                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput">Add Position</a></li>
+                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" id="positionTabAdd">Add Position</a></li>
                     </ul>
-                    <form class="popUpWindow" action="/action_page.php">
-                    Position: <input type="text" name="position">
-                    <input class="close" type="submit" value="Submit">
+                    <form class="popUpWindow" id="addPositionForm">
+                        <label for="position">Position: </label>
+                        <input type="text" id="position" name="position" />
+                        <input class="close" type="submit" value="Submit">
+                        <div id="positionMsgDiv" class="err"></div>
                     </form>
                 </div>
 
                 <div id="gameTab" class="panel">
                     <ul class="tabList">
-                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput">Add Game</a></li>
+                        <li><i class="fa fa-plus" aria-hidden="true"></i><a id="gameTabAdd" class="callInput">Add Game</a></li>
                     </ul>
-                    <form class="popUpWindow" action="/action_page.php">
-                    Add Game: <input type="text" name="game">
-                    <input class="close" type="submit" value="Submit">
+                    <form class="popUpWindow" id="addGameForm">
+                        <label for="game">Add Game: </label>
+                        <input type="text" id="game" name="game" />
+                        <input class="close" type="submit" value="Submit">
+                        <div id="gameMsgDiv" class="err"></div>
                     </form>
                     <button class="generate">Generate Line-up</button>
                 </div>

@@ -71,6 +71,7 @@
                 <div class="err">Error: <?php echo $msg ?></div>
             <?php endif; ?>
             
+            <p>Enter the <a href="add_team.php">Team(s)</a> prior to adding the Coach(es)..</p>
             <p>Coaches will be required to login in order to add Players to their Team.</p>
         </div>
         
