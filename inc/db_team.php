@@ -35,6 +35,44 @@
         } // else we could not connect to the DB 
     }
 
+    function getTeamId($coach_id) {
+        $mysqli = getConnection();
+        $team_id = 1;
+
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT team.id FROM team INNER JOIN coach ON team.id = coach.team_id WHERE coach.id = " . $coach_id);
+            
+            $num_rows = mysqli_num_rows($res);
+            
+            while ($row = $res->fetch_assoc()) {
+                $team_id = $row['id'];
+            }
+
+            $mysqli->close();
+
+            return $team_id;
+        } // else we could not connect to the DB 
+    }
+
+    function getTeamInfo($coach_id) {
+        $mysqli = getConnection();
+        $team_info = array();
+
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT team.id, team.name FROM team INNER JOIN coach ON team.id = coach.team_id WHERE coach.id = " . $coach_id);
+            
+            $num_rows = mysqli_num_rows($res);
+            
+            while ($row = $res->fetch_assoc()) {
+                $team_info[] = $row;
+            }
+
+            $mysqli->close();
+
+            return json_encode($team_info);
+        } // else we could not connect to the DB 
+    }
+
     function addTeam($team_name) {
         $mysqli = getConnection();
         $success = "success";
@@ -75,32 +113,6 @@
             $mysqli->close();
 
             return json_encode($positions);
-        } // else we could not connect to the DB            
-    }
-
-    function addPosition($position_name) {
-        $mysqli = getConnection();
-
-        if ($mysqli) {
-            $success = "";
-            $res = $mysqli->query("SELECT id FROM position where name = '" . $position_name . "'");
-
-            $num_rows = mysqli_num_rows($res);
-            
-            if ($num_rows > 0) {
-                $success = "Position already exists.";
-            } else {
-                $query = "INSERT INTO position (name, default_position) VALUES ('" . ($position_name) . "', 0)";                 
-                if ($mysqli->query($query) === TRUE) {
-                    // Position inserted
-                } else {
-                    $success = "Unable to create Team.";
-                }                
-            }
-
-            $mysqli->close();
-
-            return $success;
         } // else we could not connect to the DB            
     }
 ?>

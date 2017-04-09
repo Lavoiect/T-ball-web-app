@@ -14,13 +14,26 @@
     include 'inc/db.php';
     include 'inc/db_user.php';
     include 'inc/db_team.php';
+    include 'inc/db_player.php';
 
-    $team_name = getTeamName($coach_id);
+    $team_name = "";
+    $team_id = 1;
+    $team_info = json_decode(getTeamInfo($coach_id), true);
+
+    foreach ($team_info as $team) {
+        $team_name = $team['name'];
+        $team_id = $team['id'];
+    }
+
+    $players = json_decode(getPlayers($team_id), true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include("inc/head.php"); ?>
+        <script>
+            var teamId = <?php echo $team_id; ?>;
+        </script>
     </head>
     <body>
         <div class="application">
@@ -43,7 +56,15 @@
                 </ul>
 
                 <div id="playerTab" class="panel active">
-                    <ul class="tabList">
+                    <ul id="playerList" class="tabList">
+                       <?php
+                            foreach ($players as $player) {
+                                $player_id = $player['id'];
+                                $player_f_name = $player['first_name'];
+                                $player_l_name = $player['last_name'];
+                                echo '<li value="' . $player_id . '">' . $player_f_name . ' ' . $player_l_name.'</li>';
+                            }
+                        ?>
                         <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" id="playerTabAdd" href="#">Add Player</a></li>
                     </ul>
                     <form class="popUpWindow" id="addPlayerForm">

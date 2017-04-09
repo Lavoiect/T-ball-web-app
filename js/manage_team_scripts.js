@@ -1,5 +1,4 @@
 function requiredField(theField, theDiv) {
-    console.log(theField);
     var success = true;
     if (theField.val() == "") {
         theField.focus();
@@ -60,7 +59,36 @@ $(document).ready(function() {
     var theDiv = $('#playerMsgDiv');
     theDiv.html('');
     if (requiredField($('#pFName'), theDiv) && requiredField($('#pLName'), theDiv)) {
-        // ToDo: Submit form data via AJAX
+        var data = {"team_id" : teamId, "f_name" : $('#pFName').val(), "l_name" : $('#pLName').val()};  
+        //console.log(data);
+        
+        $.ajax({
+            url: "insert_player.php",
+            type: "POST",
+            dataType: "json",
+            data: data,
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Fatal error on server
+            },
+            success: function(res){
+                //console.log(res);
+                var err = res.ERROR;
+                
+                if (err) {
+                    $('#playerMsgDiv').html("Error: " + err);
+                } else {
+                    // success - display on page with id
+                    $('#playerMsgDiv').html();
+                    var li = document.createElement('li');
+                    li.value = res.player_id;
+                    var txtName = $('#pFName').val() + " " + $('#pLName').val();
+                    var txtNode = document.createTextNode(txtName);
+                    li.appendChild(txtNode);
+                    
+                    $('#playerList li:last-child').before(li);
+                }
+            }
+        });
     }
   });
     

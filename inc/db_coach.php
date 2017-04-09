@@ -16,6 +16,17 @@
         } // else we could not connect to the DB            
     }
 
+    function generateRandomKey() {
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $random_string_length = 10;
+        $string = '';
+        $max = strlen($characters) - 1;
+        for ($i = 0; $i < $random_string_length; $i++) {
+            $string .= $characters[mt_rand(0, $max)];
+        }
+        return $string;
+    }
+
     // ToDo: This function is HUGE, and should be refactored
     function addCoach($team_id, $coach_email) {
         $mysqli = getConnection();
@@ -31,12 +42,7 @@
                 $success = "Email address already registered.";
             } else {
                 // generate random key
-                $random = '';
-                for ($i = 0; $i < 10; $i++) {
-                    $random .= chr(mt_rand(33, 126));
-                }
-                // ToDo: need to generate a better random key!
-                $random = preg_replace('/[^a-zA-Z0-9\']/', '_', $random);           
+                $random = generateRandomKey();
                 
                 $res = $mysqli->query("SELECT id, registered FROM coach_wip where team_id = " . $team_id);
                 $num_rows = mysqli_num_rows($res);
