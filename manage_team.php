@@ -79,7 +79,7 @@
                 </div>
 
                 <div id="positionTab" class="panel">
-                    <ul class="tabList">
+                    <ul id="positionList" class="tabList">
                         <?php
                             $positions = json_decode(getPositions(), true);
                             foreach ($positions as $position) {
@@ -89,7 +89,7 @@
                         <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" id="positionTabAdd">Add Position</a></li>
                     </ul>
                     <form class="popUpWindow" id="addPositionForm">
-                        <label for="position">Position: </label>
+                        <label for="position">Position </label>
                         <input type="text" id="position" name="position" />
                         <input class="close" type="submit" value="Submit">
                         <div id="positionMsgDiv" class="err"></div>

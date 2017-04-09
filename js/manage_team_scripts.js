@@ -58,6 +58,7 @@ $(document).ready(function() {
     e.preventDefault();
     var theDiv = $('#playerMsgDiv');
     theDiv.html('');
+
     if (requiredField($('#pFName'), theDiv) && requiredField($('#pLName'), theDiv)) {
         var data = {"team_id" : teamId, "f_name" : $('#pFName').val(), "l_name" : $('#pLName').val()};  
         //console.log(data);
@@ -97,7 +98,37 @@ $(document).ready(function() {
     var theDiv = $('#positionMsgDiv');
     theDiv.html('');
     if (requiredField($('#position'), theDiv)) {
-        // ToDo: Submit form data via AJAX
+
+        var data = {"position_name" : $('#position').val()}; 
+        //console.log(data);
+        
+        $.ajax({
+            url: "insert_position.php",
+            type: "POST",
+            dataType: "json",
+            data: data,
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Fatal error on server
+            },
+            success: function(res){
+                //console.log(res);
+                var err = res.ERROR;
+                
+                if (err) {
+                    $('#positionMsgDiv').html("Error: " + err);
+                } else {
+                    // success - display on page with id
+                    $('#positionMsgDiv').html();
+                    var li = document.createElement('li');
+                    li.value = res.player_id;
+                    var txtName = $('#position').val();
+                    var txtNode = document.createTextNode(txtName);
+                    li.appendChild(txtNode);
+                    
+                    $('#positionList li:last-child').before(li);
+                }
+            }
+        });
     }
   });
     

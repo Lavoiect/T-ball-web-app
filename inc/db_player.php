@@ -1,4 +1,21 @@
 <?php
+    function addPosition($position_name) {
+        $mysqli = getConnection();    
+        
+        if ($mysqli) {
+            $last_id = 0;
+            
+            $query = "INSERT INTO position (name) VALUES ('" . $position_name . "')";
+            if ($mysqli->query($query) === TRUE) {
+                $last_id = $mysqli->insert_id;        
+            } 
+            
+            $mysqli->close();
+            
+            return $last_id;
+        } // else we could not connect to the DB           
+    }
+
     function addPlayer($team_id, $f_name, $l_name) {
         $mysqli = getConnection();    
         
