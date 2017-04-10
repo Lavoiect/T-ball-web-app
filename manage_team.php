@@ -8,9 +8,6 @@
         header("Location: login.php");
     }
 
-    error_reporting(E_ALL);
-    ini_set("display_errors","On");
-
     include 'inc/db.php';
     include 'inc/db_user.php';
     include 'inc/db_team.php';

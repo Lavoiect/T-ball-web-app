@@ -24,7 +24,6 @@
         $mysqli = getConnection();
 
         if ($mysqli) {
-            $coach_id = "";
             $res = $mysqli->query("SELECT id FROM coach where user_name = '" . $user_name . "'");
 
             $num_rows = mysqli_num_rows($res);

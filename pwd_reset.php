@@ -2,11 +2,14 @@
     session_start();
     $auth = $_SESSION["auth"];
 
-    include 'inc/db.php';
-    include 'inc/db_user.php';
+    $q_id = $_GET["id"];
+    $q_auth = $_GET["auth"];
 
-    //error_reporting(E_ALL);
-    //ini_set("display_errors","On");
+    include 'inc/db.php';
+    include 'inc/db_coach.php';
+
+    error_reporting(E_ALL);
+    ini_set("display_errors","On");
 
     if ($auth) {
         header("Location: index.php");
@@ -15,17 +18,14 @@
     $valid = true;
 
     if (count($_POST) > 0) {
-        $user_name = $_POST["userName"];
+        $email = $_POST["email"];
         $pwd = $_POST["password"];
 
-        if ($user_name != "" && $pwd != "") {
-            $success = login($user_name, $pwd);
+        if ($email != "" && $pwd != "") {
+            $success = doReset($email, $pwd, $q_id, $q_auth);
 
             if ($success) {
-                $_SESSION["auth"] = true;
-                $_SESSION["coach"] = getUserName($user_name);
-                $_SESSION["coach_id"] = getUserId($user_name);
-                header("Location: index.php");
+                header("Location: login.php");
             } else {
                 $valid = false;
             }
@@ -47,25 +47,25 @@
             </div>
             <!-- End nav div-->
         
-            <form id="loginForm" action="login.php" method="POST">
-                <label for="userName">User Name:</label>
-                <input id="userName" name="userName" type="text" value="<?php echo $user_name ?>" required="required" autofocus="autofocus" /><br />
+            <form id="resetForm" action="pwd_reset.php?id=<?php echo $q_id?>&auth=<?php echo $q_auth?>" method="POST">
+                <label for="email">Email:</label>
+                <input id="useremailName" name="email" type="email" required="required" autofocus="autofocus" /><br />
                 <label for="password">Password:</label>
                 <input id="password" name="password" type="password" required="required" /><br />
+                <label for="confirm">Confirm:</label>
+                <input id="confirm" type="password" required="required" /><br />
                 
-                <label for="rememberMe">Remember Me:</label>
-                <input type="checkbox" id="rememberMe" /><br />
-                
-                <button type="submit">Login</button>
+                <button class="submit" type="submit">Submit</button>
             </form>  
-            <a href="reset.php">Forgot Password?</a>
 
+            <div id="msgDiv" class="err"></div>
+            
             <?php if(! $valid) : ?>
-                <div class="err">Error: Please check your credentials.</div>
+                <div class="err">Error: We were unable to reset your password. Please ensure you are using your registered email address.</div>
             <?php endif; ?>
         </div>
         
         <?php include("inc/scripts.php"); ?>
-        <script src="js/login_scripts.js"></script>
+        <script src="js/pwd_reset_scripts.js"></script>
     </body>
 </html>
