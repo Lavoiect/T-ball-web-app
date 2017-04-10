@@ -100,7 +100,8 @@
                         <?php
                             $games = json_decode(getGames(), true);
                             foreach ($games as $game) {
-                                echo "<li value='" . $game['id'] . "'>" . $game['game_name'] ."</li>";
+                                //echo "<li value='" . $game['id'] . "'>" . $game['game_name'] ."</li>";
+                                echo "<li value='" . $game['id'] . "'><input type='radio' name='gameIndx' value='" . $game['id'] . "' class='rdoGame' />" . $game['game_name'] . "</li>";
                             }
                         ?>
                         <li><i class="fa fa-plus" aria-hidden="true"></i><a id="gameTabAdd" class="callInput">Add Game</a></li>
@@ -111,7 +112,7 @@
                         <input class="close" type="submit" value="Submit">
                         <div id="gameMsgDiv" class="err"></div>
                     </form>
-                    <button class="generate">Generate Line-up</button>
+                    <button class="generate" id="generateLineup">Generate Line-up</button>
                 </div>
             </div>
             <!-- End tabs -->

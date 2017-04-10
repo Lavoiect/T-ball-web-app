@@ -48,7 +48,7 @@
         
             <form id="addCoachForm" action="add_coach.php" method="POST">
                 <label for="teamName">Team Name</label>
-                <select id="teamName" name="teamName">
+                <select id="teamName" name="teamName" autofocus="autofocus">
                     <option value="1">Select a Team</option>
                     <?php
                         $teams = json_decode(getTeams(), true);
@@ -61,7 +61,7 @@
                 </select>
                 <br />
                 <label for="coachEmail">Coach Email:</label>
-                <input id="coachEmail" name="coachEmail" type="email" value="<?php echo $_POST["coachEmail"] ?>"  required="required" autofocus="autofocus"><br />
+                <input id="coachEmail" name="coachEmail" type="email" value="<?php echo $_POST["coachEmail"] ?>"  required="required" /><br />
                 <button class="submit" type="submit">Add Coach</button>
             </form>  
             

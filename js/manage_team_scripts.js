@@ -174,4 +174,11 @@ $(document).ready(function() {
         });
     }
   });
+    
+  $("#generateLineup").click(function(){
+    var games = $('.rdoGame');
+    games.each(function( index ) {
+  console.log( index + ": " + $( this ).val() );
+});
+  });
 });
