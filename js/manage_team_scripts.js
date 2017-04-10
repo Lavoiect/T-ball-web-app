@@ -79,6 +79,8 @@ $(document).ready(function() {
                     $('#playerMsgDiv').html("Error: " + err);
                 } else {
                     // success - display on page with id
+                    $('#pFName').val('');
+                    $('#pLName').val('');
                     $('#playerMsgDiv').html();
                     var li = document.createElement('li');
                     li.value = res.player_id;
@@ -97,8 +99,8 @@ $(document).ready(function() {
     e.preventDefault();
     var theDiv = $('#positionMsgDiv');
     theDiv.html('');
+      
     if (requiredField($('#position'), theDiv)) {
-
         var data = {"position_name" : $('#position').val()}; 
         //console.log(data);
         
@@ -118,9 +120,10 @@ $(document).ready(function() {
                     $('#positionMsgDiv').html("Error: " + err);
                 } else {
                     // success - display on page with id
+                    $('#position').val('');
                     $('#positionMsgDiv').html();
                     var li = document.createElement('li');
-                    li.value = res.player_id;
+                    li.value = res.position_id;
                     var txtName = $('#position').val();
                     var txtNode = document.createTextNode(txtName);
                     li.appendChild(txtNode);
@@ -136,9 +139,39 @@ $(document).ready(function() {
     e.preventDefault();
     var theDiv = $('#gameMsgDiv');
     theDiv.html('');
+
     if (requiredField($('#game'), theDiv)) {
-        // ToDo: Submit form data via AJAX
+        var data = {"team_id" : teamId, "game_name" : $('#game').val()}; 
+        //console.log(data);
+        
+        $.ajax({
+            url: "insert_game.php",
+            type: "POST",
+            dataType: "json",
+            data: data,
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Fatal error on server
+            },
+            success: function(res){
+                //console.log(res);
+                var err = res.ERROR;
+                
+                if (err) {
+                    $('#gameMsgDiv').html("Error: " + err);
+                } else {
+                    // success - display on page with id
+                    $('#game').val('');
+                    $('#gameMsgDiv').html();
+                    var li = document.createElement('li');
+                    li.value = res.game_id;
+                    var txtName = $('#game').val();
+                    var txtNode = document.createTextNode(txtName);
+                    li.appendChild(txtNode);
+                    
+                    $('#gameList li:last-child').before(li);
+                }
+            }
+        });
     }
   });
-    
 });

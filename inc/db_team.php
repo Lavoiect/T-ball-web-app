@@ -98,21 +98,4 @@
             return $success;
         } // else we could not connect to the DB 
     }
-
-    function getPositions() {
-        $mysqli = getConnection();
-
-        if ($mysqli) {
-            $positions = array();
-            $res = $mysqli->query("SELECT id, name FROM position order by id asc");
-
-            while ($row = $res->fetch_assoc()) {
-                $positions[] = $row;
-            }
-
-            $mysqli->close();
-
-            return json_encode($positions);
-        } // else we could not connect to the DB            
-    }
 ?>

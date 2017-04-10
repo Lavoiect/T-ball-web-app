@@ -1,11 +1,11 @@
 <?php
-    function addPlayer($team_id, $f_name, $l_name) {
+    function addPosition($position_name) {
         $mysqli = getConnection();    
         
         if ($mysqli) {
             $last_id = 0;
             
-            $query = "INSERT INTO player (team_id, first_name, last_name) VALUES (" . $team_id . ", '" . $f_name . "', '" . $l_name . "')";
+            $query = "INSERT INTO position (name) VALUES ('" . $position_name . "')";
             if ($mysqli->query($query) === TRUE) {
                 $last_id = $mysqli->insert_id;        
             } 
@@ -16,20 +16,20 @@
         } // else we could not connect to the DB           
     }
 
-    function getPlayers($team_id) {
+    function getPositions() {
         $mysqli = getConnection();
 
         if ($mysqli) {
-            $players = array();
-            $res = $mysqli->query("SELECT player.id, player.first_name, player.last_name FROM player INNER JOIN team ON player.team_id = team.id WHERE team.id = " . $team_id);
+            $positions = array();
+            $res = $mysqli->query("SELECT id, name FROM position order by id asc");
 
             while ($row = $res->fetch_assoc()) {
-                $players[] = $row;
+                $positions[] = $row;
             }
 
             $mysqli->close();
 
-            return json_encode($players);
+            return json_encode($positions);
         } // else we could not connect to the DB            
     }
 ?>

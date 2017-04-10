@@ -2,7 +2,7 @@
     session_start();
 
     include 'inc/db.php';
-    include 'inc/db_player.php';
+    include 'inc/db_position.php';
 
     $data = ['ERROR' => 'ERROR'];
 

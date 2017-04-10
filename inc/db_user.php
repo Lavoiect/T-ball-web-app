@@ -135,49 +135,4 @@
                 }
             } // else we could not connect to the DB   
     }
-
-    function register_BAK($f_name, $l_name, $email, $user_name, $pwd, $q_id, $q_auth) {
-            $mysqli = getConnection();
-            if ($mysqli) {
-                // check if email address is in COACH_WIP and has matching id and auth, and reg == 0
-                if (pendingRegistration($mysqli, $email, $q_id, $q_auth)) {
-                    $success = "success";
-                    $res = $mysqli->query("SELECT id FROM coach where user_name = '" . $user_name . "'");
-
-                    $num_rows = mysqli_num_rows($res);
-
-                    if ($num_rows > 0) {
-                        $success = "User Name already taken";
-                    } else {
-                        $res = $mysqli->query("SELECT id FROM coach where email = '" . $email . "'");
-
-                        $num_rows = mysqli_num_rows($res);
-
-                        if ($num_rows > 0) {
-                            $success = "Email already taken";
-                        }  else {
-                            // create new user
-                            $query = "INSERT INTO coach (first_name, last_name, user_name, email, pwd) VALUES ('" . $f_name . "', '" . $l_name . "', '" . $user_name . "', '" . $email . "', '" . $pwd . "')";                    
-                            if ($mysqli->query($query) === TRUE) {
-                                //$last_id = $mysqli->insert_id;
-                                //echo "New record created successfully. Last inserted ID is: " . $last_id;
-
-                                // update COACH_WIP table
-                                updateRegistration($mysqli, $email);
-                            } else {
-                                //echo "Error: " . $query . "<br>" . $mysqli->error;
-                                $success = "System error. Unable to create User.";
-                            }
-                        }
-                    }
-
-                    $mysqli->close();
-
-                    return $success;
-                } else {
-                    // User is not in DB. Admin must add User email address to beign Coach Registration process.
-                    return "Please contact the site Admin to register.";
-                }
-            } // else we could not connect to the DB   
-    }
 ?>

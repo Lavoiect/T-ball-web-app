@@ -15,6 +15,8 @@
     include 'inc/db_user.php';
     include 'inc/db_team.php';
     include 'inc/db_player.php';
+    include 'inc/db_position.php';
+    include 'inc/db_game.php';
 
     $team_name = "";
     $team_id = 1;
@@ -97,7 +99,13 @@
                 </div>
 
                 <div id="gameTab" class="panel">
-                    <ul class="tabList">
+                    <ul id="gameList" class="tabList">
+                        <?php
+                            $games = json_decode(getGames(), true);
+                            foreach ($games as $game) {
+                                echo "<li value='" . $game['id'] . "'>" . $game['game_name'] ."</li>";
+                            }
+                        ?>
                         <li><i class="fa fa-plus" aria-hidden="true"></i><a id="gameTabAdd" class="callInput">Add Game</a></li>
                     </ul>
                     <form class="popUpWindow" id="addGameForm">
