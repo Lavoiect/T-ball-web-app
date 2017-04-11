@@ -8,9 +8,6 @@
     include 'inc/db.php';
     include 'inc/db_coach.php';
 
-    error_reporting(E_ALL);
-    ini_set("display_errors","On");
-
     if ($auth) {
         header("Location: index.php");
     }

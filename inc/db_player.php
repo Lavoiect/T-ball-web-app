@@ -21,7 +21,7 @@
 
         if ($mysqli) {
             $players = array();
-            $res = $mysqli->query("SELECT player.id, player.first_name, player.last_name FROM player INNER JOIN team ON player.team_id = team.id WHERE team.id = " . $team_id);
+            $res = $mysqli->query("SELECT player.id, player.first_name, player.last_name FROM player INNER JOIN team ON player.team_id = team.id WHERE team.id = " . $team_id . " order by player.id");
 
             while ($row = $res->fetch_assoc()) {
                 $players[] = $row;

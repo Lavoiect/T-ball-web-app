@@ -79,8 +79,6 @@ $(document).ready(function() {
                     $('#playerMsgDiv').html("Error: " + err);
                 } else {
                     // success - display on page with id
-                    $('#pFName').val('');
-                    $('#pLName').val('');
                     $('#playerMsgDiv').html();
                     var li = document.createElement('li');
                     li.value = res.player_id;
@@ -89,6 +87,9 @@ $(document).ready(function() {
                     li.appendChild(txtNode);
                     
                     $('#playerList li:last-child').before(li);
+                    
+                    $('#pFName').val('');
+                    $('#pLName').val('');
                 }
             }
         });
@@ -120,7 +121,6 @@ $(document).ready(function() {
                     $('#positionMsgDiv').html("Error: " + err);
                 } else {
                     // success - display on page with id
-                    $('#position').val('');
                     $('#positionMsgDiv').html();
                     var li = document.createElement('li');
                     li.value = res.position_id;
@@ -129,6 +129,8 @@ $(document).ready(function() {
                     li.appendChild(txtNode);
                     
                     $('#positionList li:last-child').before(li);
+                    
+                    $('#position').val('');
                 }
             }
         });
@@ -160,15 +162,25 @@ $(document).ready(function() {
                     $('#gameMsgDiv').html("Error: " + err);
                 } else {
                     // success - display on page with id
-                    $('#game').val('');
                     $('#gameMsgDiv').html();
                     var li = document.createElement('li');
                     li.value = res.game_id;
+                    
+                    var rdo = document.createElement('input');
+                    rdo.type = 'radio';
+                    rdo.name = 'gameIndx';
+                    rdo.class= 'rdoGame';
+                    rdo.value = res.game_id; 
+                    
                     var txtName = $('#game').val();
                     var txtNode = document.createTextNode(txtName);
+                    
+                    li.appendChild(rdo);
                     li.appendChild(txtNode);
                     
                     $('#gameList li:last-child').before(li);
+                    
+                    $('#game').val('');
                 }
             }
         });

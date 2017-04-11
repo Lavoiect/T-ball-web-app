@@ -13,7 +13,7 @@
         if ($t_id != "" && $game_name != "") {
             $game_id = addGame($t_id, $game_name);
             if ($game_id > 0) {
-                $game_id = ['game_id' => $game_id];
+                $data = ['game_id' => $game_id];
             } else {
                 $data = ['ERROR' => 'Game already entered for Team.'];
             }
