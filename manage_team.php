@@ -72,7 +72,9 @@
                         <br />
                         <label for="pLName">Last name </label>
                         <input type="text" id="pLName" name="pLName" />
-                        <input class="close" type="submit" value="Submit">
+                        <input type="submit" value="Add Player">
+                        <input class="close" type="button" value="Close">
+
                         <div id="playerMsgDiv" class="err"></div>
                     </form>
                 </div>
@@ -90,7 +92,8 @@
                     <form class="popUpWindow" id="addPositionForm">
                         <label for="position">Position </label>
                         <input type="text" id="position" name="position" />
-                        <input class="close" type="submit" value="Submit">
+                        <input type="submit" value="Add Position">
+                        <input class="close" type="button" value="Close">
                         <div id="positionMsgDiv" class="err"></div>
                     </form>
                 </div>
@@ -109,7 +112,8 @@
                     <form class="popUpWindow" id="addGameForm">
                         <label for="game">Add Game: </label>
                         <input type="text" id="game" name="game" />
-                        <input class="close" type="submit" value="Submit">
+                        <input type="submit" value="Add Game">
+                        <input class="close" type="button" value="Close">
                         <div id="gameMsgDiv" class="err"></div>
                     </form>
                     <button class="generate" id="generateLineup">Generate Line-up</button>

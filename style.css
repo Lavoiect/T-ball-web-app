@@ -1,17 +1,23 @@
 body {
+  background-color: black;
   padding: 0;
   margin: 0;
-  background-color: black;
 }
 
 .header {
-
-  background-color: #0F5CE9;
-  padding: 15px;
+  background-color: #3981CE;
+  padding: 5px 5px 10px;
+  height: 75px;
+}
+.logo{
+  margin-left: 10px;
+  width: 225px;
+  z-index: 1;
+  position: absolute;
 }
 .nav{
   background-color:#0C3381;
-  height: 2.5em;
+  height: 3em;
 }
 i {
   padding: 0 5px 0 5px;
@@ -24,7 +30,7 @@ i {
 
 .application{
   margin: auto;
-  height: 900px;
+  height: 700px;
   width: 500px;
   background-image:
     url("http://res.cloudinary.com/lavoie-media/image/upload/v1490674872/background_yy6zne.png") ;
@@ -50,14 +56,10 @@ a{
   color: #fff;
   text-decoration: none;
 }
-.header {
 
-  background-color: #0F5CE9;
-  padding: 15px;
-}
 .nav{
   background-color:#0C3381;
-  height: 2.5em;
+  height: 3em;
 }
 i {
   padding: 0 5px 0 5px;
@@ -69,16 +71,6 @@ i {
   padding: 10px;
 }
 
-.application{
-  margin: auto;
-  height: 900px;
-  width: 500px;
-  background-image:
-    url("http://res.cloudinary.com/lavoie-media/image/upload/v1490674872/background_yy6zne.png") ;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
 
 .greating{
   color: #fff;
@@ -86,6 +78,12 @@ i {
 }
 .addTeam{
   padding: 15px;
+}
+
+.teamName{
+  margin: 10px 0;
+  padding-left: 10px;
+  color: #fff;
 }
 .iconLabel{
   padding-top: 10px;
@@ -128,21 +126,24 @@ form {
 }
 
 #positionTab ul li {
-  border-bottom: solid 3px rgba(192,192,192,0.6);
+  padding: 10px;
+  border-bottom: solid 3px rgba(12,51,129,.5);
 }
 #playerTab ul li {
-  border-bottom: solid 3px rgba(192,192,192,0.3);
+  padding: 10px;
+  border-bottom: solid 3px rgba(12,51,129,.5);
 }
 
 #gameTab ul li {
-  border-bottom: solid 3px rgba(192,192,192,0.3);
+  padding: 10px;
+  border-bottom: solid 3px rgba(12,51,129,.5);
 }
 
 .tabList {
   color: #fff;
-  border-top: solid 3px rgba(192,192,192,0.3);
-  border-left: solid 3px rgba(192,192,192,0.3);
-  border-right: solid 3px rgba(192,192,192,0.3);
+  border-top: solid 3px rgba(12,51,129,.5);
+  border-left: solid 3px rgba(12,51,129,.5);
+  border-right: solid 3px rgba(12,51,129,.5);
 }
 
 p{
@@ -219,9 +220,5 @@ p{
 }
 
 .dataList {
-    color: #ffffff;
-}
-
-.teamName {
     color: #ffffff;
 }
