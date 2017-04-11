@@ -176,9 +176,23 @@ $(document).ready(function() {
   });
     
   $("#generateLineup").click(function(){
+    $('#gameLineupDiv').html('');
+    var gameIndex = 0;
     var games = $('.rdoGame');
     games.each(function( index ) {
-  console.log( index + ": " + $( this ).val() );
-});
+        //console.log( index + ": " + $(this).val() + ": " + $(this).is(':checked'));
+        if ($(this).is(':checked')) {
+            gameIndex = $(this).val();
+            return false; // break out of each loop
+        }  
+    });
+      
+    if (gameIndex == 0) {
+        $('#gameLineupDiv').html('Please select a Game.');
+    } else {
+        // generate roster (unique / random positions for all players for 3 innings)
+        var url = 'roster.php?game_id=' + gameIndex;
+        window.open(url);
+    }
   });
 });

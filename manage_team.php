@@ -47,7 +47,7 @@
 
             <!-- Start tabs section -->
             <div class="tab-panels">
-               <h2 class="teamName"><?php echo $team_name ?></h2>
+               <h2 id="teamName" class="teamName"><?php echo $team_name ?></h2>
                 <ul class="tabs menu">
                     <li rel="playerTab" class="active">Players</li>
                     <li rel="positionTab">Positions</li>
@@ -113,6 +113,7 @@
                         <div id="gameMsgDiv" class="err"></div>
                     </form>
                     <button class="generate" id="generateLineup">Generate Line-up</button>
+                    <div id="gameLineupDiv" class="err"></div>
                 </div>
             </div>
             <!-- End tabs -->
