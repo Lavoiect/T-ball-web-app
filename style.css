@@ -1,7 +1,7 @@
 body {
+  background-color: black;
   padding: 0;
   margin: 0;
-  background-color: black;
 }
 
 .header {
@@ -10,6 +10,7 @@ body {
   height: 75px;
 }
 .logo{
+  margin-left: 10px;
   width: 225px;
   z-index: 1;
   position: absolute;
@@ -58,7 +59,7 @@ a{
 
 .nav{
   background-color:#0C3381;
-  height: 2.5em;
+  height: 3em;
 }
 i {
   padding: 0 5px 0 5px;
