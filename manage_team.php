@@ -8,9 +8,6 @@
         header("Location: login.php");
     }
 
-    error_reporting(E_ALL);
-    ini_set("display_errors","On");
-
     include 'inc/db.php';
     include 'inc/db_user.php';
     include 'inc/db_team.php';
@@ -106,7 +103,6 @@
                         <?php
                             $games = json_decode(getGames(), true);
                             foreach ($games as $game) {
-                                //echo "<li value='" . $game['id'] . "'>" . $game['game_name'] ."</li>";
                                 echo "<li value='" . $game['id'] . "'><input type='radio' name='gameIndx' value='" . $game['id'] . "' class='rdoGame' />" . $game['game_name'] . "</li>";
                             }
                         ?>
