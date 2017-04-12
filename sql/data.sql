@@ -13,4 +13,4 @@ insert into position (name, default_position) values ('Center Field', 1);
 insert into team (name) values ('');
 
 # Populate COACH table
-insert into coach (team_id, first_name, last_name, user_name, email, pwd, admin) values (1, 'Admin', 'Admin', 'Admin', 'admin@test.com', 'password', 1);
+insert into coach (team_id, first_name, last_name, user_name, email, pwd, admin) values (1, 'Admin', 'Admin', 'Admin', 'lavoiect@gmail.com', 'password', 1);
