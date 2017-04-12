@@ -1,4 +1,3 @@
-
 function buildTable(inning, players) {
     var str  = '<h3>Inning ' + inning + '</h3>';
         str += '<table border="1">';
@@ -37,30 +36,34 @@ function getRoster(gameId, numberOfInnings) {
             //console.log(res);
             var err = res.ERROR;
             if (err) {
-                $('#msgDiv').html('Error: Unable to generate Line-up.');
+                $('#msgDiv').html('Error: ' + err);
             } else {
                 var currentInning = 1;
                 var players = [];
                 var json = JSON.parse(res);
+                
+                if (json.length == 0) {
+                    $('#msgDiv').html('Error: Unable to generate Line-up.');
+                } else {
+                    for (var j in json) {
+                        var inning = (json[j].inning);
+                        var firstName = (json[j].first_name);
+                        var lastName = (json[j].last_name);
+                        var playerName = firstName +  " " + lastName;
+                        var position = (json[j].name);
 
-                for (var j in json) {
-                    var inning = (json[j].inning);
-                    var firstName = (json[j].first_name);
-                    var lastName = (json[j].last_name);
-                    var playerName = firstName +  " " + lastName;
-                    var position = (json[j].name);
-                    
-                    if (currentInning == inning) {
-                       players.push({"playerName" : playerName, "position" : position});
-                    } else {
-                        buildTable(currentInning, players);
-                        currentInning = inning;
-                        players = [];
-                        players.push({"playerName" : playerName, "position" : position});
-                    }
-                }    
-                // push last inning
-                buildTable(currentInning, players);
+                        if (currentInning == inning) {
+                           players.push({"playerName" : playerName, "position" : position});
+                        } else {
+                            buildTable(currentInning, players);
+                            currentInning = inning;
+                            players = [];
+                            players.push({"playerName" : playerName, "position" : position});
+                        }
+                    }    
+                    // push last inning
+                    buildTable(currentInning, players);
+                }
             }
         }
     });

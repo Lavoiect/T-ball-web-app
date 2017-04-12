@@ -44,8 +44,6 @@
                 <option value="0">Select Number of Innings</option>
                 <option value="3">3</option>
                 <option value="5">5</option>
-                <option value="7">7</option>
-                <option value="9">9</option>
             </select>
             <br /><button class="submit" type="submit">Generate Line-up</button>
         </form>

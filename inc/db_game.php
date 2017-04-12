@@ -1,11 +1,88 @@
 <?php
+    // insert into player_position (player_id, position_id, game_id, inning) values(1, 1, 1, 1);
+    function getNbrOfPlayers($game_id) {
+        $mysqli = getConnection(); 
+        $nbr_of_players = 0;
+        
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT 
+                                        player.id
+                                    FROM 
+                                        player, 
+                                        game
+                                    WHERE 
+                                        player.team_id = game.team_id 
+                                    AND  
+                                        game.id = " . $game_id);
+            
+            $nbr_of_players = mysqli_num_rows($res);
+
+            $mysqli->close();
+        }
+
+        return $nbr_of_players;
+    }
+
+    function generatePlayerPositions($game_id, $nbr_of_innings) {
+        $mysqli = getConnection(); 
+
+        $positions = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        shuffle($positions);
+        $rand_positions = array();
+        foreach ($positions as $position) {
+            $rand_positions[] = $position;
+        }
+
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT 
+                                        player.id
+                                    FROM 
+                                        player, 
+                                        game
+                                    WHERE 
+                                        player.team_id = game.team_id 
+                                    AND  
+                                        game.id = " . $game_id . " ORDER BY player.id");
+
+            $players = array();
+            while ($row = $res->fetch_assoc()) {
+                $players[] = $row['id'];
+            }
+            shuffle($players);
+            $rand_players = array();
+            foreach ($players as $player) {
+                $rand_players[] = $player;
+            }
+
+            $the_inning = 1;
+            $indx = 0;
+
+            while ($the_inning <= $nbr_of_innings) {
+                foreach ($rand_players as $player) {
+                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning) VALUES (" . $rand_players[$indx] . ", " . $rand_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ")";
+                    $mysqli->query($query);
+                    $indx++;
+                }
+                $the_inning++;
+                $indx = 0;
+                
+                shuffle($rand_players);
+                shuffle($rand_positions);
+            }
+
+            $mysqli->close();
+        }
+    }
+
     // This function utilized by roster.php.
-    function getDymaniceGameData($game_id, $nbr_of_innings) {
+    function getDymanicGameData($game_id, $nbr_of_innings) {
         $mysqli = getConnection();    
         
         if ($mysqli) {
-            $nbr_of_players = 9;
-            $max_innings = ($nbr_of_players * intval($nbr_of_innings));
+            generatePlayerPositions($game_id, $nbr_of_innings);
+            
+            $nbr_of_players = getNbrOfPlayers($game_id);
+            $max_positions = ($nbr_of_players * intval($nbr_of_innings));
             $data = array();
             $res = $mysqli->query("SELECT 
                                         player.first_name, 
@@ -29,7 +106,7 @@
 
             $counter = 0;
             while ($row = $res->fetch_assoc()) {
-                if ($counter < $max_innings) {
+                if ($counter < $max_positions) {
                     $data[] = $row;
                     $counter++;
                 }

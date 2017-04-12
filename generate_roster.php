@@ -9,13 +9,20 @@
     if (count($_POST) > 0) {
         $game_id = $_POST["game_id"];
         $nbr_of_innings = $_POST["nbr_of_innings"];
-        
+
         if ($game_id != "" && $nbr_of_innings != "") {
-            $game_data = getDymaniceGameData($game_id, $nbr_of_innings);
-            if (sizeof($game_data) > 0) {
-                $data = $game_data;
+            $nbr_of_players = getNbrOfPlayers($game_id);
+
+            if ($nbr_of_players > 0) {
+                $game_data = getDymanicGameData($game_id, $nbr_of_innings);
+                
+                if (sizeof($game_data) > 0) {
+                    $data = $game_data;
+                } else {
+                    $data = ['ERROR' => 'Unable to generate Line-up.'];
+                }
             } else {
-                $data = ['ERROR' => 'Unable to generate Line-up.'];
+                $data = ['ERROR' => 'No Players found for this Team.'];
             }
         } 
     } // else show page
