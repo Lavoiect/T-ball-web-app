@@ -90,6 +90,7 @@ $(document).ready(function() {
                     
                     $('#pFName').val('');
                     $('#pLName').val('');
+                    $('#pFName').focus();
                 }
             }
         });
@@ -131,6 +132,7 @@ $(document).ready(function() {
                     $('#positionList li:last-child').before(li);
                     
                     $('#position').val('');
+                    $('#position').focus();
                 }
             }
         });
@@ -181,6 +183,7 @@ $(document).ready(function() {
                     $('#gameList li:last-child').before(li);
                     
                     $('#game').val('');
+                    $('#game').focus();
                 }
             }
         });

@@ -1,5 +1,4 @@
 <?php
-    // insert into player_position (player_id, position_id, game_id, inning) values(1, 1, 1, 1);
     function getNbrOfPlayers($game_id) {
         $mysqli = getConnection(); 
         $nbr_of_players = 0;
@@ -74,7 +73,7 @@
         }
     }
 
-    // This function utilized by roster.php.
+    // Used to create persist new Game Roster data
     function getDymanicGameData($game_id, $nbr_of_innings) {
         $mysqli = getConnection();    
         
@@ -118,8 +117,7 @@
         } // else we could not connect to the DB          
     }
 
-    // This funct was utilized in roster_BAK.php.  
-    // Keeping for now.
+    // Used for pulling already persisted Game Roster data
     function getGameData($game_id) {
         $mysqli = getConnection();    
 
