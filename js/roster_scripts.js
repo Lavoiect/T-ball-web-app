@@ -45,6 +45,7 @@ function getRoster(gameId, numberOfInnings) {
                 if (json.length == 0) {
                     $('#msgDiv').html('Error: Unable to generate Line-up.');
                 } else {
+                    $('#inputForm').hide();
                     for (var j in json) {
                         var inning = (json[j].inning);
                         var firstName = (json[j].first_name);

@@ -77,17 +77,19 @@
         <h2>Game: <?php echo getGameName($q_game_id) ?></h2>
 
         <?php if (! $have_existing_data) { ?>
-            <form id="rosterForm">
-                <label for="nbrOfInnings">Number of Innings </label>
-                <br /><select id="nbrOfInnings" autofocus="autofocus">
-                    <option value="0">Select Number of Innings</option>
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                </select>
-                <br /><button class="submit" type="submit">Generate Line-up</button>
-            </form>
-            <div id="msgDiv" class="err"></div>
-        
+            <div id="inputForm">
+                <form id="rosterForm">
+                    <label for="nbrOfInnings">Number of Innings </label>
+                    <br /><select id="nbrOfInnings" autofocus="autofocus">
+                        <option value="0">Select Number of Innings</option>
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br /><button class="submit" type="submit">Generate Line-up</button>
+                </form>
+                <div id="msgDiv" class="err"></div>
+            </div>
+            
             <div id="rosterDiv"></div>
         <?php } else { 
                     foreach($innings as $key=>$value) {
@@ -118,7 +120,6 @@
                     }
             }
         ?>
-        
        
         <?php include("inc/scripts.php"); ?>
         <script src="js/roster_scripts.js"></script>
