@@ -5,6 +5,7 @@ $(document).ready(function() {
             persistedPrefs = JSON.parse(persistedPrefs);
 
             $('#userName').val(persistedPrefs.userName);
+            $('#password').focus();
             $('#rememberMe').prop('checked', true);
         }
     }
