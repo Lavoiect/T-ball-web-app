@@ -26,7 +26,7 @@
             </div>
             <!-- End nav div-->
 
-            <h2 class="dataList">Teams</h2>
+            <h2 class="dataList headLines">Teams</h2>
             <div class="dataList">
                 <ul>
                     <?php
@@ -34,14 +34,14 @@
                         foreach ($teams as $team) {
                             $team_name = $team['name'];
                             if ($team_name != '') {
-                                echo "<li value='" . $team['id'] . "'>" . $team_name ."</li>";   
+                                echo "<li value='" . $team['id'] . "'>" . $team_name ."</li>";
                             }
                         }
                     ?>
                 </ul>
             </div>
         </div>
-        
+
         <?php include("inc/scripts.php"); ?>
     </body>
 </html>

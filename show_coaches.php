@@ -26,7 +26,7 @@
             </div>
             <!-- End nav div-->
 
-           <h2 class="dataList">Coaches</h2>
+           <h2 class="dataList headLines">Coaches</h2>
             <div class="dataList">
                 <ul>
                     <?php
@@ -38,7 +38,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <?php include("inc/scripts.php"); ?>
     </body>
 </html>

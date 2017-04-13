@@ -1,16 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display');
+
 body {
   background-color: black;
   padding: 0;
   margin: 0;
+  font-family: 'Playfair Display', serif;
 }
-
+h1 h2 h3 h4 h5 h5{
+  font-family: 'Montserrat', sans-serif;
+}
 .header {
   background-color: #3981CE;
   padding: 5px 5px 10px;
   height: 75px;
 }
 .logo{
-  margin-left: 10px;
+  margin-left: 20px;
   width: 225px;
   z-index: 1;
   position: absolute;
@@ -21,11 +26,6 @@ body {
 }
 i {
   padding: 0 5px 0 5px;
-}
-#user{
-  color: #fff;
-  float: right;
-  padding: 10px;
 }
 
 .application{
@@ -66,9 +66,37 @@ i {
 }
 
 #user{
+  margin: 15px 5px 15px 5px;
   color: #fff;
   float: right;
-  padding: 10px;
+
+}
+#position{
+  font-size: 20px;
+  height: 35px;
+  margin-top: 10px;
+
+}
+#game{
+  font-size: 20px;
+  height: 35px;
+  margin-top: 10px;
+
+}
+.icon-jersey-solid{
+  font-size: 80px;
+  color: #3981CE;
+}
+.generate{
+    font-size: 20px;
+    color: #fff;
+    margin-top: 10px;
+    background-color: #0C3381;
+    height: 35px;
+    float: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
 }
 
 
@@ -91,33 +119,97 @@ i {
   color: #fff;
 }
 .fa-chevron-left{
-  padding: 10px;
+  margin: 15px 0 15px 10px;
   color: #fff;
   font-size: 30px;
 }
 form {
+  display: grid;
   font-size: 20px;
   padding: 15px;
   color: #fff;
 }
 
-#input1{
+#pFName{
   font-size: 20px;
-  width: 55%;
-  height: 25px;
+  height: 35px;
   margin-bottom: 10px;
 }
-#input2 {
+#pLName {
   margin-top: 5px;
-  width: 100%;
   height: 35px;
   padding: 3px;
   font-size: 20px;
-  background: #0F5CE9;
-  color: #fff;
   }
 
+select#teamName{
+  font-size: 20px;
+  height: 35px;
+  margin-top: 10px;
+}
 
+  input#teamName{
+    font-size: 20px;
+    height: 35px;
+    margin-top: 10px;
+  }
+
+  #coachEmail{
+    font-size: 20px;
+    height: 35px;
+    margin-top: 10px;
+  }
+
+.dataList{
+  color: #fff;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.dataList ul{
+  list-style: none;
+}
+.headLines{
+  font-size: 25px;
+}
+h2#teamName{
+  padding: 10px 0 10px 10px;
+  margin: 0;
+  background-color: rgba(170, 170, 170, .3);
+  color: #d8dbe2;
+}
+.close{
+  font-size: 20px;
+  color: #fff;
+  margin-top: 10px;
+  background-color: #0C3381;
+  height: 35px;
+  float: left;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+.add{
+  font-size: 20px;
+  color: #fff;
+  margin-top: 10px;
+  background-color: #0C3381;
+  height: 35px;
+  float: left;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.submit{
+  font-size: 20px;
+  color: #fff;
+  background-color: #0C3381;
+  height: 35px;
+  float: left;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
 
 .tabList{
   background-color: rgba(192,192,192,0.3);
@@ -127,23 +219,23 @@ form {
 
 #positionTab ul li {
   padding: 10px;
-  border-bottom: solid 3px rgba(12,51,129,.5);
+  border-bottom: solid 3px rgb(57,129,206);
 }
 #playerTab ul li {
   padding: 10px;
-  border-bottom: solid 3px rgba(12,51,129,.5);
+  border-bottom: solid 3px rgb(57,129,206);
 }
 
 #gameTab ul li {
   padding: 10px;
-  border-bottom: solid 3px rgba(12,51,129,.5);
+  border-bottom: solid 3px rgb(57,129,206);
 }
 
 .tabList {
   color: #fff;
-  border-top: solid 3px rgba(12,51,129,.5);
-  border-left: solid 3px rgba(12,51,129,.5);
-  border-right: solid 3px rgba(12,51,129,.5);
+  border-top: solid 3px rgb(57,129,206);
+  border-left: solid 3px rgb(57,129,206);
+  border-right: solid 3px rgb(57,129,206);
 }
 
 p{
@@ -164,7 +256,7 @@ p{
 }
 
 .tab-panels .menu li{
-  width: 140px;
+  width: 75px;
   padding: 10px;
   font-size: 20px;
   list-style: none;
@@ -191,14 +283,14 @@ p{
 }
 
 .popUpWindow{
+  margin-left: 100px;
   color: #fff;
   display: none;
-  width: 465px;
-  background-color: rgba(0,0,0,0.9);
+  width: 270px;
+  background-color: #3981CE;
   position: fixed;
-  top: 31%;
+  top: 40%;
   z-index: 1;
-  border: solid 3px grey;
 }
 
 .callInput {
@@ -217,8 +309,4 @@ p{
 
 .err {
     color: red;
-}
-
-.dataList {
-    color: #ffffff;
 }

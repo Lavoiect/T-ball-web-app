@@ -41,7 +41,9 @@
             <!-- Start nav div-->
             <div class="nav">
                 <a href="index.php"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-                <div id="user">Welcome Coach <?php echo $coach ?>. <a href="logout.php">Logout </a><i class="fa fa-user-o" aria-hidden="true"></i> </div>
+                <div id="user">Welcome Coach <?php echo $coach ?>. <a href="logout.php">Logout </a><span class="icon-coach">
+                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
+                </span> </div>
             </div>
             <!-- End nav div-->
 
@@ -64,7 +66,7 @@
                                 echo '<li value="' . $player_id . '">' . $player_f_name . ' ' . $player_l_name.'</li>';
                             }
                         ?>
-                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" id="playerTabAdd" href="#">Add Player</a></li>
+                        <li><span class="icon-hitter"></span><a class="callInput" id="playerTabAdd" href="#"> Add Player</a></li>
                     </ul>
                     <form class="popUpWindow" id="addPlayerForm">
                         <label for="pFName">First name </label>
@@ -72,7 +74,8 @@
                         <br />
                         <label for="pLName">Last name </label>
                         <input type="text" id="pLName" name="pLName" />
-                        <input type="submit" value="Add Player">
+                        <br>
+                        <input class="add" type="submit" value="Add Player">
                         <input class="close" type="button" value="Close">
 
                         <div id="playerMsgDiv" class="err"></div>
@@ -87,12 +90,12 @@
                                 echo "<li value='" . $position['id'] . "'>" . $position['name'] ."</li>";
                             }
                         ?>
-                        <li><i class="fa fa-plus" aria-hidden="true"></i><a class="callInput" id="positionTabAdd">Add Position</a></li>
+                        <li><span class="icon-pitcher"><a class="callInput" id="positionTabAdd">Add Position</a></li>
                     </ul>
                     <form class="popUpWindow" id="addPositionForm">
                         <label for="position">Position </label>
                         <input type="text" id="position" name="position" />
-                        <input type="submit" value="Add Position">
+                        <input class="add" type="submit" value="Add Position">
                         <input class="close" type="button" value="Close">
                         <div id="positionMsgDiv" class="err"></div>
                     </form>
@@ -106,12 +109,13 @@
                                 echo "<li value='" . $game['id'] . "'><input type='radio' name='gameIndx' value='" . $game['id'] . "' class='rdoGame' />" . $game['game_name'] . "</li>";
                             }
                         ?>
-                        <li><i class="fa fa-plus" aria-hidden="true"></i><a id="gameTabAdd" class="callInput">Add Game</a></li>
+                        <li><span class="icon-batandball"></span><a id="gameTabAdd" class="callInput">Add Game</a></li>
                     </ul>
                     <form class="popUpWindow" id="addGameForm">
                         <label for="game">Add Game: </label>
                         <input type="text" id="game" name="game" />
-                        <input type="submit" value="Add Game">
+                        <br />
+                        <input class="add" type="submit" value="Add Game">
                         <input class="close" type="button" value="Close">
                         <div id="gameMsgDiv" class="err"></div>
                     </form>

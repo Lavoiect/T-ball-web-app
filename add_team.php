@@ -42,20 +42,20 @@
                 <div id="user">Welcome Coach <?php echo $coach ?>. <a href="logout.php">Logout </a><i class="fa fa-user-o" aria-hidden="true"></i> </div>
             </div>
             <!-- End nav div-->
-        
+
             <form action="add_team.php" method="POST">
                 <label for="teamName">Team Name:</label>
                 <input id="teamName" name="teamName" type="text" required="required" value="<?php echo $team_name ?>" autofocus="autofocus"><br />
                 <button class="submit" type="submit">Add Team</button>
-            </form>  
-            
+            </form>
+
             <?php if($msg != "") : ?>
                 <div class="err">Error: <?php echo $msg ?></div>
             <?php endif; ?>
-            
+
             <p>You will need to add players to your roster and define the positions for your team in the next step.</p>
         </div>
-        
+
         <?php include("inc/scripts.php"); ?>
     </body>
 </html>
