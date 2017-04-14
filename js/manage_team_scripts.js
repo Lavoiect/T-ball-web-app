@@ -54,6 +54,13 @@ $(document).ready(function() {
     $("#game").focus();
   });
     
+    // Close popup when ESC key is pressed
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            $(".popUpWindow").hide();
+        }
+    });
+    
   $("#addPlayerForm").submit(function(e){
     e.preventDefault();
     var theDiv = $('#playerMsgDiv');

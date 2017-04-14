@@ -3,16 +3,16 @@ function buildTable(inning, players) {
         str += '<table border="1">';
             str += '<thead>';
                 str += '<tr>';
+                    str += '<th>Player (Batting Order)</th>';
                     str += '<th>Position</th>';
-                    str += '<th>Player</th>';
                 str += '</tr>';
             str += '</thead>';
             str += '<tbody id="inning' + inning + '">';
 
             for (var player in players) {
                 str += "<tr>";
-                str += "<td>" + players[player].position  +"</td>";
                 str += "<td>" + players[player].playerName + "</td>";
+                str += "<td>" + players[player].position  +"</td>";
                 str += "</tr>";
             }
         str += '</tbody>';

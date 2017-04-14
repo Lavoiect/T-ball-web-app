@@ -101,16 +101,16 @@
                             echo '<table border="1">';
                                 echo '<thead>';
                                     echo '<tr>';
+                                        echo '<th>Player (Batting Order)</th>';
                                         echo '<th>Position</th>';
-                                        echo '<th>Player</th>';
                                     echo '</tr>';
                                 echo '</thead>';
                                 echo '<tbody id="inning' . $inning_no . '">';
 
                                 foreach($value as $item) {
                                     echo "<tr>";
-                                    echo "<td>" . $item['name'] . "</td>";
                                     echo "<td>" . $item['first_name'] . " " . $item['last_name'] . "</td>";
+                                    echo "<td>" . $item['name'] . "</td>";
                                     echo "</tr>";
                                 }
 

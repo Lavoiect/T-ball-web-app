@@ -42,6 +42,9 @@
                         <br />
                         <a href="show_coaches.php"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
                         <div class="iconLabel">Show Coaches</div>
+                        <br />
+                        <a href="#" id="resetSeasonBtn"><img src="http://res.cloudinary.com/lavoie-media/image/upload/v1490676514/icon_a6906n.png" class="base" /></a>
+                        <div class="iconLabel">Reset Season</div>
                     <? else: ?>
                         <a href="manage_team.php"><span class="icon-jersey-solid base"></span></a>
                         <div class="iconLabel">Manage Team</div>
@@ -53,5 +56,8 @@
         </div>
 
         <?php include("inc/scripts.php"); ?>
+        <?php if($coach == "Admin") : ?>
+            <script src="js/reset_season_scripts.js"></script>
+        <?php endif; ?>
 	</body>
 </html>

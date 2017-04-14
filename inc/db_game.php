@@ -95,19 +95,21 @@
             $the_inning = 1;
             $indx = 0;
 
-            $bat_order = getBattingOrder($game_id);
-            // ToDo: Need to set order!
+            //$bat_order = getBattingOrder($game_id);
+            
+            $bat_order = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+            shuffle($bat_order);
             
             while ($the_inning <= $nbr_of_innings) {
                 foreach ($rand_players as $player) {
-                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning, bat_order) VALUES (" . $rand_players[$indx] . ", " . $rand_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ", " . $bat_order . ")";
+                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning, bat_order) VALUES (" . $rand_players[$indx] . ", " . $rand_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ", " . $bat_order[$indx] . ")";
                     $mysqli->query($query);
                     $indx++;
                 }
                 $the_inning++;
                 $indx = 0;
                 
-                shuffle($rand_players);
+                //shuffle($rand_players);
                 shuffle($rand_positions);
             }
 
@@ -129,7 +131,8 @@
                                         player.first_name, 
                                         player.last_name, 
                                         position.name,
-                                        player_position.inning
+                                        player_position.inning,
+                                        player_position.bat_order
                                     FROM 
                                         player, 
                                         position,
@@ -142,7 +145,7 @@
                                         player_position.game_id = " 
                                         . $game_id .
                                     " ORDER BY
-                                        player_position.inning asc, player_position.position_id asc;
+                                        player_position.inning asc, player_position.bat_order asc;
                                     ");
 
             $counter = 0;
