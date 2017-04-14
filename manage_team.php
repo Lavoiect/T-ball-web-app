@@ -16,7 +16,7 @@
     include 'inc/db_game.php';
 
     $team_name = "";
-    $team_id = 1;
+    $team_id = 0;
     $team_info = json_decode(getTeamInfo($coach_id), true);
 
     foreach ($team_info as $team) {
@@ -104,7 +104,7 @@
                 <div id="gameTab" class="panel">
                     <ul id="gameList" class="tabList">
                         <?php
-                            $games = json_decode(getGames(), true);
+                            $games = json_decode(getGames($team_id), true);
                             foreach ($games as $game) {
                                 echo "<li value='" . $game['id'] . "'><input type='radio' name='gameIndx' value='" . $game['id'] . "' class='rdoGame' />" . $game['game_name'] . "</li>";
                             }

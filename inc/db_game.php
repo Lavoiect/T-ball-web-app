@@ -1,4 +1,43 @@
 <?php
+    function getBattingOrder($game_id) {
+        $mysqli = getConnection(); 
+        $bat_order = 0;
+        $team_id = 0;
+        
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT 
+                                        batting_order.bat_order,
+                                        game.team_id
+                                    FROM 
+                                        batting_order, 
+                                        game
+                                    WHERE 
+                                        batting_order.team_id = game.team_id 
+                                    AND  
+                                        game.id = " . $game_id);
+            
+            
+            while ($row = $res->fetch_assoc()) {
+                $bat_order = $row['bat_order'];
+                $team_id = $row['team_id'];
+            }
+            
+            $new_bat_order = $bat_order;
+            if ($bat_order < 9) {
+                $new_bat_order++;
+                
+            } else {
+                $new_bat_order = 1;
+            };
+            
+            $res = $mysqli->query("UPDATE batting_order SET bat_order = " . $new_bat_order . " WHERE team_id = " . $team_id);  
+            
+            $mysqli->close();
+        }
+
+        return $bat_order;
+    }
+
     function getNbrOfPlayers($game_id) {
         $mysqli = getConnection(); 
         $nbr_of_players = 0;
@@ -56,9 +95,12 @@
             $the_inning = 1;
             $indx = 0;
 
+            $bat_order = getBattingOrder($game_id);
+            // ToDo: Need to set order!
+            
             while ($the_inning <= $nbr_of_innings) {
                 foreach ($rand_players as $player) {
-                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning) VALUES (" . $rand_players[$indx] . ", " . $rand_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ")";
+                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning, bat_order) VALUES (" . $rand_players[$indx] . ", " . $rand_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ", " . $bat_order . ")";
                     $mysqli->query($query);
                     $indx++;
                 }
@@ -208,12 +250,12 @@
         } // else we could not connect to the DB           
     }
 
-    function getGames() {
+    function getGames($team_id) {
         $mysqli = getConnection();
 
         if ($mysqli) {
             $games = array();
-            $res = $mysqli->query("SELECT id, game_name FROM game order by id asc");
+            $res = $mysqli->query("SELECT id, game_name FROM game WHERE team_id = " . $team_id . " order by id asc");
 
             while ($row = $res->fetch_assoc()) {
                 $games[] = $row;

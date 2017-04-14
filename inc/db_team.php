@@ -76,6 +76,7 @@
     function addTeam($team_name) {
         $mysqli = getConnection();
         $success = "success";
+        $team_id = 0;
 
         if ($mysqli) {
             $res = $mysqli->query("SELECT id FROM team where name = '" . $team_name . "'");
@@ -88,11 +89,16 @@
                 $query = "INSERT INTO team (name) VALUES ('" . $team_name . "')";                    
                 if ($mysqli->query($query) === TRUE) {
                     // Team inserted
+                    $team_id = $mysqli->insert_id;
                 } else {
                     $success = "Unable to create Team.";
                 }
             }
 
+            
+            $res = $mysqli->query("INSERT INTO batting_order (team_id) VALUES (" . $team_id . ")");  
+            
+            
             $mysqli->close();
 
             return $success;

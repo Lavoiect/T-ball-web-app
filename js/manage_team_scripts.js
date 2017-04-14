@@ -171,7 +171,7 @@ $(document).ready(function() {
                     var rdo = document.createElement('input');
                     rdo.type = 'radio';
                     rdo.name = 'gameIndx';
-                    rdo.class= 'rdoGame';
+                    rdo.className = 'rdoGame';
                     rdo.value = res.game_id; 
                     
                     var txtName = $('#game').val();
