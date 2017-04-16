@@ -21,7 +21,7 @@
 
         if ($mysqli) {
             $positions = array();
-            $res = $mysqli->query("SELECT id, name FROM position order by id asc");
+            $res = $mysqli->query("SELECT id, name FROM position order by list_order asc");
 
             while ($row = $res->fetch_assoc()) {
                 $positions[] = $row;

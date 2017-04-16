@@ -25,7 +25,6 @@
             $new_bat_order = $bat_order;
             if ($bat_order < 9) {
                 $new_bat_order++;
-                
             } else {
                 $new_bat_order = 1;
             };
@@ -64,13 +63,6 @@
     function generatePlayerPositions($game_id, $nbr_of_innings) {
         $mysqli = getConnection(); 
 
-        $positions = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-        shuffle($positions);
-        $rand_positions = array();
-        foreach ($positions as $position) {
-            $rand_positions[] = $position;
-        }
-
         if ($mysqli) {
             $res = $mysqli->query("SELECT 
                                         player.id
@@ -82,35 +74,39 @@
                                     AND  
                                         game.id = " . $game_id . " ORDER BY player.id");
 
+            $positions = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
             $players = array();
             while ($row = $res->fetch_assoc()) {
                 $players[] = $row['id'];
             }
-            shuffle($players);
-            $rand_players = array();
-            foreach ($players as $player) {
-                $rand_players[] = $player;
-            }
-
-            $the_inning = 1;
-            $indx = 0;
-
-            //$bat_order = getBattingOrder($game_id);
-            
             $bat_order = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-            shuffle($bat_order);
+            
+            $the_inning = 1;
             
             while ($the_inning <= $nbr_of_innings) {
-                foreach ($rand_players as $player) {
-                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning, bat_order) VALUES (" . $rand_players[$indx] . ", " . $rand_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ", " . $bat_order[$indx] . ")";
-                    $mysqli->query($query);
-                    $indx++;
+                $curr_bat_order = getBattingOrder($game_id);
+
+                $max = 10 - $curr_bat_order;
+                $wip_indx = $curr_bat_order - 1;
+
+                $new_positions = array_slice($positions,$wip_indx,$max);
+                $new_players   = array_slice($players,$wip_indx,$max);
+                $new_bat_order = array_slice($bat_order,$wip_indx,$max);
+
+                $len = 9 - sizeof($new_positions);
+                for ($indx = 1; $indx <= $len; $indx++) {
+                    $new_positions[] = $indx;
+                    $new_players[] = $indx;
+                    $new_bat_order[] = $indx;
                 }
-                $the_inning++;
-                $indx = 0;
                 
-                //shuffle($rand_players);
-                shuffle($rand_positions);
+                $len = sizeof($players);
+                for ($indx = 0; $indx <= $len; $indx++) {
+                    $query = "INSERT INTO player_position (player_id, position_id, game_id, inning, bat_order) VALUES (" . $players[$indx] . ", " . $new_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ", " . $bat_order[$indx] . ")";
+                    $mysqli->query($query);
+                }
+                
+                $the_inning++;
             }
 
             $mysqli->close();
@@ -172,7 +168,8 @@
                                         player.first_name, 
                                         player.last_name, 
                                         position.name,
-                                        player_position.inning
+                                        player_position.inning,
+                                        player_position.bat_order
                                     FROM 
                                         player, 
                                         position,
@@ -185,7 +182,7 @@
                                         player_position.game_id = " 
                                         . $game_id .
                                     " ORDER BY
-                                        player_position.inning asc, player_position.position_id asc;
+                                        player_position.inning asc, player_position.bat_order asc;
                                     ");
 
             while ($row = $res->fetch_assoc()) {
