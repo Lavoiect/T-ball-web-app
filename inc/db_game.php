@@ -37,6 +37,44 @@
         return $bat_order;
     }
 
+function getLeadPlayer($game_id) {
+        $mysqli = getConnection(); 
+        $lead_player = 0;
+        $team_id = 0;
+        
+        if ($mysqli) {
+            $res = $mysqli->query("SELECT 
+                                        batting_order.lead_player,
+                                        game.team_id
+                                    FROM 
+                                        batting_order, 
+                                        game
+                                    WHERE 
+                                        batting_order.team_id = game.team_id 
+                                    AND  
+                                        game.id = " . $game_id);
+            
+            
+            while ($row = $res->fetch_assoc()) {
+                $lead_player = $row['lead_player'];
+                $team_id = $row['team_id'];
+            }
+            
+            $new_lead_player = $lead_player;
+            if ($lead_player < 9) {
+                $new_lead_player++;
+            } else {
+                $new_lead_player = 1;
+            };
+            
+            $res = $mysqli->query("UPDATE batting_order SET lead_player = " . $new_lead_player . " WHERE team_id = " . $team_id);  
+            
+            $mysqli->close();
+        }
+
+        return $lead_player;
+    }
+
     function getNbrOfPlayers($game_id) {
         $mysqli = getConnection(); 
         $nbr_of_players = 0;
@@ -81,6 +119,16 @@
             }
             $bat_order = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
             
+            $lead_player = getLeadPlayer($game_id);
+            $max = 10 - $lead_player;
+            $wip_indx = $lead_player - 1;
+            $new_bat_order = array_slice($bat_order,$wip_indx,$max);
+            
+            $len = 9 - sizeof($players);
+            for ($indx = 1; $indx <= $len; $indx++) {
+                $new_bat_order[] = $indx;
+            }
+            
             $the_inning = 1;
             
             while ($the_inning <= $nbr_of_innings) {
@@ -91,15 +139,15 @@
 
                 $new_positions = array_slice($positions,$wip_indx,$max);
                 $new_players   = array_slice($players,$wip_indx,$max);
-                $new_bat_order = array_slice($bat_order,$wip_indx,$max);
+                //$new_bat_order = array_slice($bat_order,$wip_indx,$max);
 
                 $len = 9 - sizeof($new_positions);
                 for ($indx = 1; $indx <= $len; $indx++) {
                     $new_positions[] = $indx;
                     $new_players[] = $indx;
-                    $new_bat_order[] = $indx;
+                    //$new_bat_order[] = $indx;
                 }
-                
+
                 $len = sizeof($players);
                 for ($indx = 0; $indx <= $len; $indx++) {
                     $query = "INSERT INTO player_position (player_id, position_id, game_id, inning, bat_order) VALUES (" . $players[$indx] . ", " . $new_positions[$indx] .  ", " . $game_id . ", " . $the_inning . ", " . $bat_order[$indx] . ")";
@@ -141,7 +189,7 @@
                                         player_position.game_id = " 
                                         . $game_id .
                                     " ORDER BY
-                                        player_position.inning asc, player_position.bat_order asc;
+                                        player_position.inning asc, player_position.position_id asc;
                                     ");
 
             $counter = 0;
@@ -182,7 +230,7 @@
                                         player_position.game_id = " 
                                         . $game_id .
                                     " ORDER BY
-                                        player_position.inning asc, player_position.bat_order asc;
+                                        player_position.inning asc, player_position.position_id asc;
                                     ");
 
             while ($row = $res->fetch_assoc()) {
